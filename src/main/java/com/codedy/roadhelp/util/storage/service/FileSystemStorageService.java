@@ -18,7 +18,6 @@ import java.util.Calendar;
 public class FileSystemStorageService implements StorageService {
 
     /**
-     * <b>Hiếu_iceTea</b> <br> <br>
      *
      * //Xử lý file:<br>
      * if (!file.isEmpty()) { <br>
@@ -27,7 +26,6 @@ public class FileSystemStorageService implements StorageService {
      * }
      * <br> <br>
      *
-     * Create At: 2021-07-04 22:30
      *
      * <br> <br>
      *
@@ -59,9 +57,6 @@ public class FileSystemStorageService implements StorageService {
     }
 
     /**
-     * <b>Hiếu_iceTea</b> <br> <br>
-     *
-     * Create At: 2021-07-04 22:30
      *
      * <br> <br>
      */

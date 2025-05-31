@@ -5,7 +5,7 @@ import 'size_config.dart';
 //Localhost IOS emulator 127.0.0.1 or localhost
 //Localhost Android emulator: 10.0.2.2
 //Localhost on real driver means different. Eg: 192.168.1.105
-const String baseApiUrl = "http://172.18.36.209:8080/";
+const String baseApiUrl = "http://192.168.100.110:8080/";
 
 const kPrimaryColor = Color(0xFFFF7643);
 const kPrimaryLightColor = Color(0xFFFFECDF);
