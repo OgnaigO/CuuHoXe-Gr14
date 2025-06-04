@@ -8,11 +8,9 @@ import java.util.Date;
 import java.util.LinkedHashMap;
 
 /**
- * <b>Hieu_iceTea</b> <br><br>
  * <p>
  * Chứa các trường hệ thống, dùng chung cho tất cả các bảng <br><br>
  * <p>
- * Created at: 14:45 2021-07-04
  */
 @MappedSuperclass
 public class BaseModel {
@@ -101,9 +99,6 @@ public class BaseModel {
     /**
      * Hàm này trả về cấu trúc nguyên thủy của entity này.<br/><br/>
      * <p>
-     * Viết bởi: Hiếu iceTea<br/>
-     * Ngày: 23-10-2021<br/>
-     * Thời gian: 22:22<br/>
      *
      * @return
      */

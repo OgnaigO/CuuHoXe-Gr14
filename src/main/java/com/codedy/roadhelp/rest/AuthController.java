@@ -247,7 +247,7 @@ public class AuthController {
     private void sendEmail_NotificationNewPartnerAccount(String toEmail, Map<String, Object> mailData) {
 
         // Cách 1. Gửi mail đơn giản:
-        emailService.sendSimpleMessage(toEmail, "Bạn đã trở thành đối tác của RoadHelp Codedy", "Chúng tôi đã xem xét và phê duyệt yêu cầu nâng cấp tài khoản đối tác của bạn. Hãy khởi động lại ứng dụng để trải nghiệm đầy đủ tính năng của tài khoản đối tác. Cảm ơn bạn.");
+        emailService.sendSimpleMessage(toEmail, "Bạn đã trở thành đối tác của Chúng tôi", "Chúng tôi đã xem xét và phê duyệt yêu cầu nâng cấp tài khoản đối tác của bạn. Hãy khởi động lại ứng dụng để trải nghiệm đầy đủ tính năng của tài khoản đối tác. Cảm ơn bạn.");
 
     }
 

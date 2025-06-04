@@ -8,7 +8,7 @@ import 'components/body.dart';
 class MyAccountScreen extends StatelessWidget {
   static String routeName = "/my_account";
 
-  const MyAccountScreen({Key? key}) : super(key: key);
+  const MyAccountScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

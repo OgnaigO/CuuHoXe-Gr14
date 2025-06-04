@@ -259,10 +259,6 @@ public class User extends BaseModel implements Serializable {
     /**
      * Hàm này trả về cấu trúc nguyên thủy của entity này.<br/><br/>
      * <p>
-     * Viết bởi: Hiếu iceTea<br/>
-     * Ngày: 23-10-2021<br/>
-     * Thời gian: 22:22<br/>
-     *
      * @return
      */
     protected LinkedHashMap<String, Object> toHashMap() {
@@ -290,9 +286,6 @@ public class User extends BaseModel implements Serializable {
     /**
      * Hàm này trả về định dạng hiển thị dữ liệu API cho entity này.<br/><br/>
      * <p>
-     * Viết bởi: Hiếu iceTea<br/>
-     * Ngày: 24-10-2021<br/>
-     * Thời gian: 10:15<br/>
      *
      * @return
      */

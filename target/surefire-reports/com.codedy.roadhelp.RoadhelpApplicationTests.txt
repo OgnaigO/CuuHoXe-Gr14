@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.codedy.roadhelp.RoadhelpApplicationTests
 -------------------------------------------------------------------------------
+<<<<<<< HEAD
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 10.163 s - in com.codedy.roadhelp.RoadhelpApplicationTests
+=======
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.901 s - in com.codedy.roadhelp.RoadhelpApplicationTests
+>>>>>>> 541d5591c4254cc955f9e58e252d8fac5b1264c6
