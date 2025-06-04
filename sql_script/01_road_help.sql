@@ -255,7 +255,7 @@ INSERT INTO garage (id,user_partner_id,district_id,province_id,ward_id,name,rate
 VALUE (2,4,32,2, 476,'Garage Quang Huy', 4.1,21.012125, 105.839031, 'Đường Lê Duẩn', 'chuyên sửa xe', '0868 6633 15', TRUE,1);
 
 INSERT INTO garage (id,user_partner_id,district_id,province_id,ward_id,name,rate_avg,latitude, longitude, address, description, phone, active,is_featured)
-VALUE (3,4,32,2, 476,'Showroom Đình Hiếu', 4.2,21.010844, 105.839912, 'Ven Hồ Ba Mẫu', 'chuyên sửa xe', '0869 6633 16', FALSE,1);
+VALUE (3,4,32,2, 476,'Tiệm sửa xe Minh Khai', 4.2,21.010844, 105.839912, '296 Minh Khai', 'chuyên sửa xe', '0869 6633 16', FALSE,1);
 
 INSERT INTO garage (id,user_partner_id,district_id,province_id,ward_id,name,rate_avg,latitude, longitude, address, description, phone, active,is_featured)
 VALUE (4,4,32,2, 476,'Sửa xe Mạnh Hùng', 4.3,21.009477, 105.841029, 'Ven Hồ Ba Mẫu', 'chuyên sửa xe', '0869 6633 51', TRUE,1);
@@ -285,7 +285,7 @@ INSERT INTO garage (id,user_partner_id,district_id,province_id,ward_id,name,rate
 VALUE (12,5,32,2, 476,'Garage Quang Huy 4', 5.0,21.013804, 105.839543, 'Đường Lê Duẩn', 'chuyên sửa xe', '0873 6633 22', TRUE,0);
 
 INSERT INTO garage (id,user_partner_id,district_id,province_id,ward_id,name,rate_avg,latitude, longitude, address, description, phone, active,is_featured)
-VALUE (13,4,285,20, 4148,'Showroom Hiếu iceTea CS2', 4.9,18.672235, 105.692798, 'Trường Thi, Thành phố Vinh, Nghệ An', 'Chuyên mua bán, sửa chữa các loại xe gắn máy tay ga xe số. Thay thế, lắp đặt phụ tùng chính hãng.', '0868 6633 15', TRUE,0);
+VALUE (13,4,285,20, 4148,'Tiệm sửa xe Trương Định', 4.9,18.672235, 105.692798, '18 Trương Định , Hoàng Mai Hà Nội', 'Chuyên mua bán, sửa chữa các loại xe gắn máy tay ga xe số. Thay thế, lắp đặt phụ tùng chính hãng.', '0868 6633 15', TRUE,0);
 
 INSERT INTO garage (id,user_partner_id,district_id,province_id,ward_id,name,rate_avg,latitude, longitude, address, description, phone, active,is_featured)
 VALUE (14,4,285,20, 4148,'Sửa xe máy Thanh motor', 4.9,18.726102, 105.6632644, 'Xóm 15, Nghi Kim, tp Vinh, Nghệ An', 'Chuyên sửa xe ga, xe số', '0981 416 436', TRUE,1);
@@ -297,10 +297,10 @@ INSERT INTO garage (id,user_partner_id,district_id,province_id,ward_id,name,rate
 VALUE (16,4,285,20, 4148,'Sữa Xe Máy Thanh Đào', 4.8,18.741316, 105.6586408, 'Đường Thăng Long, Nghi Liên, TP Vinh', 'Uy tín, Chất lượng, Sửa nhanh', '0987179107', TRUE,1);
 
 INSERT INTO garage (id,user_partner_id,district_id,province_id,ward_id,name,rate_avg,latitude, longitude, address, description, phone, active,is_featured)
-VALUE (17,4,285,20, 4148,'Tiệm Sửa Xe Nhật Thái', 4.6,18.6643792, 105.6901323, 'Lê Duẩn, Trường Thi, Thành phố Vinh, Nghệ An', 'Chuyên cứu hộ xe máy', '0932 394 999', TRUE,1);
+VALUE (17,4,285,20, 4148,'Tiệm Sửa Xe Minh Khai', 4.6,18.6643792, 105.6901323, '296 Minh Khai , Hai Bà Trưng , Hà Nội', 'Chuyên cứu hộ xe máy', '0932 394 999', TRUE,1);
 
 INSERT INTO garage (id,user_partner_id,district_id,province_id,ward_id,name,rate_avg,latitude, longitude, address, description, phone, active,is_featured)
-VALUE (18,4,285,20, 4148,'Showroom Hiếu iceTea', 4.8,18.730966, 105.659688, 'Nghi Liên, TP Vinh, Nghệ An', 'Chuyên mua bán, sửa chữa các loại xe gắn máy tay ga xe số. Thay thế, lắp đặt phụ tùng chính hãng.', '0868 6633 15', TRUE,1);
+VALUE (18,4,285,20, 4148,'Tiệm Sửa Xe Tam Trinh', 4.8,18.730966, 105.659688, '18 Tam Trinh ,Hoàng Mai', 'Chuyên mua bán, sửa chữa các loại xe gắn máy tay ga xe số. Thay thế, lắp đặt phụ tùng chính hãng.', '0868 6633 15', TRUE,1);
 
 
 
@@ -377,43 +377,43 @@ INSERT INTO garageimage (id, garage_id,image)
 VALUE (23, 14, 'sua-xe-huy-man-3.jpg');
 
 INSERT INTO garageimage (id, garage_id,image)
-VALUE (24, 17, 'TiemSuaXeNhatThai-1.jpg');
+VALUE (24, 17, 'TiemSuaXeGiang-1.jpg');
 
 INSERT INTO garageimage (id, garage_id,image)
-VALUE (25, 17, 'TiemSuaXeNhatThai-2.jpg');
+VALUE (25, 17, 'TiemSuaXeGiang-2.jpg');
 
 INSERT INTO garageimage (id, garage_id,image)
-VALUE (26, 17, 'TiemSuaXeNhatThai-3.jpg');
+VALUE (26, 17, 'TiemSuaXeGiang-3.jpg');
 
 INSERT INTO garageimage (id, garage_id,image)
-VALUE (27, 17, 'TiemSuaXeNhatThai-4.jpg');
+VALUE (27, 17, 'TiemSuaXeGiang-4.jpg');
 
 INSERT INTO garageimage (id, garage_id,image)
-VALUE (28, 17, 'TiemSuaXeNhatThai-5.jpg');
+VALUE (28, 17, 'TiemSuaXeGiang-5.jpg');
 
 INSERT INTO garageimage (id, garage_id,image)
-VALUE (29, 18, 'Showroom-Hieu-iceTea-NgheAn-1.jpg');
+VALUE (29, 18, 'Showroom-Kien-1.jpeg');
 
 INSERT INTO garageimage (id, garage_id,image)
-VALUE (30, 18, 'Showroom-Hieu-iceTea-NgheAn-2.jpg');
+VALUE (30, 18, 'Showroom-Kien-2.jpg');
 
 INSERT INTO garageimage (id, garage_id,image)
-VALUE (31, 18, 'Showroom-Hieu-iceTea-NgheAn-3.jpg');
+VALUE (31, 18, 'Showroom-Kien-3.jpg');
 
 INSERT INTO garageimage (id, garage_id,image)
-VALUE (32, 18, 'Showroom-Hieu-iceTea-NgheAn-4.jpg');
+VALUE (32, 18, 'Showroom-Kien-4.jpg');
 
 INSERT INTO garageimage (id, garage_id,image)
-VALUE (33, 18, 'Showroom-Hieu-iceTea-NgheAn-5.jpg');
+VALUE (33, 18, 'Showroom-Kien-5.jpg');
 
 INSERT INTO garageimage (id, garage_id,image)
-VALUE (34, 18, 'Showroom-Hieu-iceTea-NgheAn-6.jpg');
+VALUE (34, 18, 'Showroom-Kien-6.jpg');
 
 INSERT INTO garageimage (id, garage_id,image)
-VALUE (35, 13, 'Showroom-Hieu-iceTea-CS2-NgheAn-1.jpg');
+VALUE (35, 13, 'Showroom-Kien2-1.jpg');
 
 INSERT INTO garageimage (id, garage_id,image)
-VALUE (36, 13, 'Showroom-Hieu-iceTea-CS2-NgheAn-2.jpg');
+VALUE (36, 13, 'Showroom-Kien2-2.jpg');
 
 
 
