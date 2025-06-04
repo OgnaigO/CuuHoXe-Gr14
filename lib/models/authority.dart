@@ -19,22 +19,14 @@ class Authority extends BaseModel {
     //Relationship
     this.user,
     //
-    int? id,
-    DateTime? createdAt,
-    String? createdBy,
-    DateTime? updatedAt,
-    String? updatedBy,
-    int? version,
-    bool? deleted,
-  }) : super(
-          id: id,
-          createdAt: createdAt,
-          createdBy: createdBy,
-          updatedAt: updatedAt,
-          updatedBy: updatedBy,
-          version: version,
-          deleted: deleted,
-        );
+    super.id,
+    super.createdAt,
+    super.createdBy,
+    super.updatedAt,
+    super.updatedBy,
+    super.version,
+    super.deleted,
+  });
 
   //
   factory Authority.fromJson(Map<String, dynamic> json) {

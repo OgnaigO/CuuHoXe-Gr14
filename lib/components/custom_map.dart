@@ -43,7 +43,7 @@ class _CustomMapState extends State<CustomMap> {
       /*if (currentLocation == null) {
         return const LatLng(21.0291518, 105.8523056); //Hồ Gươm, Hà Nội
       }*/
-      return LatLng(currentLocation.latitude!, currentLocation.longitude!);
+      return LatLng(currentLocation.latitude, currentLocation.longitude);
     } catch (error) {
       Util.showDialogNotification(
           context: context, title: "Đã xảy ra lỗi!", content: error.toString());
@@ -72,6 +72,7 @@ class _CustomMapState extends State<CustomMap> {
     };
 
     widget.onTap!(position);
+    return null;
   }
 
   @override

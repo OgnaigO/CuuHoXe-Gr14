@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 import 'package:location/location.dart' as loc;
 import 'package:shared_preferences/shared_preferences.dart';
 
-const String GOOGLE_API_KEY = 'AIzaSyCPGSoVHrfLmvJO6TF760Sc1IlbwNUkj5M';
+const String GOOGLE_API_KEY = 'AIzaSyDtL2oVp9zlGC7WFvx3Xcan--2rSZL-SNA';
 const String _locationDataKey = "Location_Data";
 
 class LocationHelper {

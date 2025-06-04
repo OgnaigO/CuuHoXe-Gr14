@@ -22,29 +22,34 @@ class WaitWebSocket extends StatefulWidget {
 }
 
 class _WaitWebSocketState extends State<WaitWebSocket> {
-  // use this if you are using emulator. localhost is mapped to 10.0.2.2 by default.
-  final String socketUrl = baseApiUrl + 'webSocket';
+  // Thay vì lấy baseApiUrl (http://...), ta phải chuyển thành ws:// và thêm '/websocket' phía sau.
+  // Ví dụ baseApiUrl = "http://192.168.0.105:8080/", ta chuyển thành:
+  final String socketUrl = baseApiUrl
+      .replaceFirst('http://', 'ws://')
+      .replaceFirst('https://', 'wss://') +
+    'webSocket/websocket';
 
   StompClient? stompClient;
 
   @override
   void initState() {
+    super.initState();
+
     if (stompClient == null) {
       stompClient = StompClient(
         config: StompConfig(
           url: socketUrl,
           onConnect: _onConnectCallback,
-          onWebSocketError: (dynamic error) async => {
+          onWebSocketError: (dynamic error) async {
             await Util.showDialogNotification(
-                context: context, content: error.toString())
+              context: context,
+              content: error.toString(),
+            );
           },
         ),
       );
-
       stompClient!.activate();
     }
-
-    super.initState();
   }
 
   @override
@@ -52,13 +57,11 @@ class _WaitWebSocketState extends State<WaitWebSocket> {
     if (stompClient != null) {
       stompClient!.deactivate();
     }
-
     super.dispose();
   }
 
   void _onConnectCallback(StompFrame connectFrame) {
-    // client is connected and ready
-
+    // Khi đã kết nối thành công
     stompClient!.subscribe(
       destination: widget.destination,
       callback: widget.callback,
@@ -71,8 +74,8 @@ class _WaitWebSocketState extends State<WaitWebSocket> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          CircularProgressIndicator(),
-          SizedBox(height: 50),
+          const CircularProgressIndicator(),
+          const SizedBox(height: 50),
           Text(
             widget.message,
             textAlign: TextAlign.center,

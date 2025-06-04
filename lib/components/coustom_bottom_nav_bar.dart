@@ -8,9 +8,9 @@ import '/screens/menu_options/menu_options_screen.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
   const CustomBottomNavBar({
-    Key? key,
+    super.key,
     required this.selectedMenu,
-  }) : super(key: key);
+  });
 
   final MenuState selectedMenu;
 

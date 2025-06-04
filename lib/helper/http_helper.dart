@@ -9,7 +9,7 @@ class HttpHelper {
 
   static Map<String, String> get _authHeader {
     return {
-      'Authorization': 'Bearer ' + accessToken,
+      'Authorization': 'Bearer $accessToken',
     };
   }
 
