@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:latlong2/latlong.dart';  // Thay google_maps_flutter bằng latlong2
 import 'package:flutter_application_1/config/constants.dart';
 import 'package:flutter_application_1/helper/util.dart';
 import 'package:flutter_application_1/screens/map_picker/map_picker_screen.dart';
-
 import '/helper/location_helper.dart';
 
 class LocationInput extends StatefulWidget {
@@ -92,13 +91,7 @@ class _LocationInputState extends State<LocationInput> {
             border: Border.all(width: 1, color: Colors.grey),
           ),
           child: isLoadLocation
-              ? /*Container(
-                  child:
-                      Image.asset("assets/images/placeholder_processing2.gif"),
-                  color: kSecondaryColor.withOpacity(0.1),
-                  width: double.infinity,
-                )*/
-              Image.asset("assets/images/placeholder_processing_location.gif")
+              ? Image.asset("assets/images/placeholder_processing_location.gif")
               : _previewImageUrl == null
                   ? const Text(
                       'Không có vị trí được chọn',

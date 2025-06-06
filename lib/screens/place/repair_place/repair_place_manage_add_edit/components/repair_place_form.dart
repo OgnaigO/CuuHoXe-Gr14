@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:latlong2/latlong.dart'; // Import LatLng từ latlong2
 import 'package:provider/provider.dart';
 import 'package:flutter_application_1/helper/util.dart';
 import 'package:flutter_application_1/models/garage.dart';
@@ -21,34 +21,18 @@ class RepairPlaceForm extends StatefulWidget {
 }
 
 class _RepairPlaceFormState extends State<RepairPlaceForm> {
-  Garage _garage = Garage(); //khởi tạo giá trị ban đầu, cập nhật ở initState()
+  Garage _garage = Garage(); 
   final _formKey = GlobalKey<FormState>();
   final _provinceDistrictWardController = TextEditingController();
 
-  /*String? name;
-  String? phone;
-  String? address;
-  String? description;*/
-
   @override
   void initState() {
-    //initial value
-    /*name = widget.garage?.name;
-    phone = widget.garage?.phone;
-    address = widget.garage?.address;
-    description = widget.garage?.description;*/
-
-    //Lấy giá trị từ widget.garage, nếu nó null thì khởi tạo :
     _garage = widget.garage ?? Garage();
-
-    //widget.garage ??= Garage(); //Khởi tạo nếu null
-
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    //widget.garage ??= Garage(); //Khởi tạo nếu null
     final String modeStr = _garage.id == null ? "Thêm mới" : "Cập nhật";
 
     return Form(
@@ -92,8 +76,6 @@ class _RepairPlaceFormState extends State<RepairPlaceForm> {
       decoration: const InputDecoration(
         labelText: "Name",
         hintText: "Enter your name",
-        // If  you are using latest version of flutter then lable text and hint text shown like this
-        // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/User.svg"),
       ),
@@ -117,8 +99,6 @@ class _RepairPlaceFormState extends State<RepairPlaceForm> {
       decoration: const InputDecoration(
         labelText: "Phone",
         hintText: "Enter your phone",
-        // If  you are using latest version of flutter then lable text and hint text shown like this
-        // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Phone.svg"),
       ),
@@ -138,8 +118,6 @@ class _RepairPlaceFormState extends State<RepairPlaceForm> {
       decoration: const InputDecoration(
         labelText: "Address",
         hintText: "Enter your address",
-        // If  you are using latest version of flutter then lable text and hint text shown like this
-        // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon:
             CustomSurffixIcon(svgIcon: "assets/icons/Location point.svg"),
@@ -163,8 +141,6 @@ class _RepairPlaceFormState extends State<RepairPlaceForm> {
 
     return TextFormField(
       controller: _provinceDistrictWardController,
-      //initialValue: initialValue, //Không thể cùng lúc dùng controller và initialValue
-      //onSaved: (newValue) => _garage.name = newValue,
       onTap: () => _showMyDialog(),
       readOnly: true,
       validator: (value) {
@@ -206,8 +182,6 @@ class _RepairPlaceFormState extends State<RepairPlaceForm> {
       decoration: const InputDecoration(
         labelText: "Description",
         hintText: "Enter your description",
-        // If  you are using latest version of flutter then lable text and hint text shown like this
-        // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon:
             CustomSurffixIcon(svgIcon: "assets/icons/Chat bubble Icon.svg"),
@@ -230,7 +204,6 @@ class _RepairPlaceFormState extends State<RepairPlaceForm> {
   Future<void> _showMyDialog() async {
     return showDialog<void>(
       context: context,
-      //barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text(

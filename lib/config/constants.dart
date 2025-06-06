@@ -6,8 +6,8 @@ import 'size_config.dart';
 //Localhost Android emulator: 10.0.2.2
 //Localhost on real driver means different. Eg: 192.168.1.105
 
-const String baseApiUrl = "http://192.168.58.110:8080/";
-const String socketUrl = "ws://192.168.58.110:8080/webSocket/websocket";
+const String baseApiUrl = "http://192.168.100.110:8080/";
+const String socketUrl = "ws://192.168.100.110:8080/webSocket/websocket";
 
 
 
