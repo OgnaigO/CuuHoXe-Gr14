@@ -177,9 +177,9 @@ class _SignFormState extends State<SignForm> {
             context, HomeScreen.routeName, (Route<dynamic> route) => false);
       }
 
-      //Nếu màn hình bắt đầu không phải là SignIn mà là Splash thì cần chuyển về màn hình bắt đầu
+      //Nếu màn hình bắt đầu không phải là SignIn mà là Splash thì cần chuyển về màn hình start
       //Navigator.of(context).pop(); //pop() nếu màn trước là Splash
-      //Navigator.pushNamed(context, HomeScreen.routeName); //chuyển đến màn hình chủ sau khi login
+      //Navigator.pushNamed(context, HomeScreen.routeName); //chuyển đến màn hình trang chủ sau khi login
     } catch (error) {
       await Util.showDialogNotification(
           context: context, content: error.toString());

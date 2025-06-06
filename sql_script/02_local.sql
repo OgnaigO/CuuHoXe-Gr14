@@ -12127,4 +12127,3 @@ INSERT INTO `ward` (`id`, `_name`, `_prefix`, `_province_id`, `_district_id`) VA
 (11280, 'Thân Giáp', 'Xã', 63, 709),
 (11281, 'Thông Huề', 'Xã', 63, 709),
 (11282, 'Trùng Khánh', 'Thị trấn', 63, 709),
-(11283, 'Trung Phúc', 'Xã', 63, 709);

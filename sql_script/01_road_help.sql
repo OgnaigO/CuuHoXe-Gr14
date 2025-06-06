@@ -557,7 +557,7 @@ INSERT INTO ratingGarage (id, user_member_id, garage_id, rate_point, comment)
 VALUE (22, 11, 18, 5, 'Chất lượng dịch vụ quá xuất sắc. mùa covid nắng nóng nhưng vẫn hỗ trợ giao xe tại nhà. nhân viên giao nhận vui vẻ nhiệt tình hướng dẫn');
 
 INSERT INTO ratingGarage (id, user_member_id, garage_id, rate_point, comment)
-VALUE (23, 15, 13, 5, 'Rất hài lòng về chất lượng phục vụ, sửa chữa rất nhanh');
+VALUE (23, 15, 13, 5, 'Rất hài lòng về chất lượng phục vụ, sửa chữa rất nhanh gọn');
 
 
 
