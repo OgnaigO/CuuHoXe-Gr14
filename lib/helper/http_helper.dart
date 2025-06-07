@@ -54,6 +54,7 @@ class HttpHelper {
 
   static Future<dynamic> post({required String url, Object? body}) async {
     try {
+      print(body);
       final response = await http.post(
         Uri.parse(url),
         headers: {
@@ -89,6 +90,10 @@ class HttpHelper {
 
   static Future<dynamic> put({required String url, Object? body}) async {
     try {
+      print("body $body");
+      print("🔗 PUT URL: $url");
+      print("🔗 header : $_authHeader");
+
       final response = await http.put(
         Uri.parse(url),
         headers: {
@@ -104,6 +109,7 @@ class HttpHelper {
               'Hết thời gian chờ máy chủ phản hồi. Vui lòng kiểm tra internet và thử lại!');
         },
       );
+      print("response $response");
 
       var responseBody = response.body;
 

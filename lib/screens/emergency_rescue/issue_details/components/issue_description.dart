@@ -83,9 +83,7 @@ class IssueDescription extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          issue.userPartner!.firstName! +
-                              " " +
-                              issue.userPartner!.lastName!,
+                          "${issue.userPartner!.firstName!} ${issue.userPartner!.lastName!}",
                           style: TextStyle(color: kTextColor),
                         ),
                       ],
@@ -167,9 +165,9 @@ class IssueDescription extends StatelessWidget {
                 ),
                 ListTile(
                   leading: Icon(Icons.access_time),
-                  title: Text(
+                  title: Text(issue?.createdAt!=null?
                     DateFormat('dd/MM/yyyy HH:mm:ss')
-                        .format(issue.createdAt!.toLocal()),
+                        .format(issue.createdAt!.toLocal()):'',
                     style: TextStyle(color: kTextColor),
                   ),
                 ),

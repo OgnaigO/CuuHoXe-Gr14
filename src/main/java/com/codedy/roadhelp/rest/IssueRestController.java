@@ -67,6 +67,7 @@ public class IssueRestController {
     public LinkedHashMap<String, Object> store(@RequestBody Issue issue) {
         issue.setId(0);
 
+
         return issueService.save(issue).toApiResponse();
     }
 

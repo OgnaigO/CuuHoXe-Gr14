@@ -4,6 +4,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
+
 import java.util.Date;
 import java.util.LinkedHashMap;
 
@@ -102,6 +105,21 @@ public class BaseModel {
      *
      * @return
      */
+
+     @PrePersist
+    protected void onCreate() {
+        Date now = new Date();
+        if (this.createdAt == null) this.createdAt = now;
+        if (this.updatedAt == null) this.updatedAt = now;
+        if (this.createdBy == null) this.createdBy = "Codedy";
+        if (this.updatedBy == null) this.updatedBy = "Codedy";
+        if (this.version == 0) this.version = 1;
+        if (this.deleted == null) this.deleted = false;
+    }
+    @PreUpdate
+    protected void onUpdate() {
+        this.updatedAt = new Date();
+    }
     protected LinkedHashMap<String, Object> toHashMap() {
         LinkedHashMap<String, Object> hashMap = new LinkedHashMap<>();
         hashMap.put("id", id);

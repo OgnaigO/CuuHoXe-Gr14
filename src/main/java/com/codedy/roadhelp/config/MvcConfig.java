@@ -20,7 +20,10 @@ public class MvcConfig implements WebMvcConfigurer {
 
         //Thêm dòng này để xử lý lỗi chạy app ở chế độ WEB trên Chrome
         //https://stackoverflow.com/questions/35091524/spring-cors-no-access-control-allow-origin-header-is-present
-        registry.addMapping("/**");
+        registry.addMapping("/**")
+                .allowedOrigins("*") // Cho phép tất cả origin (hoặc chỉnh thành domain Flutter Web nếu cần)
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // ⚠️ Quan trọng!
+                .allowedHeaders("*");
     }
 
 }

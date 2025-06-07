@@ -30,6 +30,7 @@ class IssueRepository {
   }
 
   static Future<Issue> create(Issue item) async {
+    print(item);
     var responseBody = await HttpHelper.post(
       url: _url,
       body: item.toJson(),
@@ -102,6 +103,7 @@ class IssueRepository {
 
   static Future<String> partnerConfirmMember(
       int issueId, int userPartnerId) async {
+         print("conirm $issueId $userPartnerId");
     var responseBody = await HttpHelper.put(
       url: _url +
           issueId.toString() +
@@ -109,6 +111,7 @@ class IssueRepository {
           userPartnerId.toString(),
       body: null,
     );
+
 
     return responseBody['message'];
   }
