@@ -7,14 +7,15 @@ import 'components/body.dart';
 class IssueDetailsScreen extends StatelessWidget {
   static String routeName = "/issue_details";
 
-
-  final IssueDetailsArguments arguments;
-  const IssueDetailsScreen({super.key, required this.arguments});
+  const IssueDetailsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     // You have to call it on your starting screen:
     SizeConfig().init(context);
+
+    final IssueDetailsArguments arguments =
+        ModalRoute.of(context)!.settings.arguments as IssueDetailsArguments;
 
     return Scaffold(
       backgroundColor: Color(0xFFF5F6F9),

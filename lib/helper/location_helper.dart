@@ -3,40 +3,43 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:geolocator/geolocator.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:http/http.dart' as http;
 import 'package:location/location.dart' as loc;
 import 'package:shared_preferences/shared_preferences.dart';
 
-const String GOOGLE_API_KEY = 'AIzaSyDtL2oVp9zlGC7WFvx3Xcan--2rSZL-SNA';
 const String _locationDataKey = "Location_Data";
+const String _locationIQApiKey = 'pk.9a078d2c0d0c47dbf26a4757ceaf7780';
 
 class LocationHelper {
-  /// Lấy ảnh bản đồ thu nhỏ từ toạ độ
+  /// Tạo ảnh bản đồ tĩnh từ LocationIQ
   static String generateLocationPreviewImage({
     required double latitude,
     required double longitude,
     int width = 600,
     int height = 300,
   }) {
-    return 'https://maps.googleapis.com/maps/api/staticmap'
-        '?center=$latitude,$longitude'
-        '&zoom=16&size=${width}x$height'
-        '&markers=color:red|$latitude,$longitude'
-        '&key=$GOOGLE_API_KEY';
+    return 'https://maps.locationiq.com/v3/staticmap'
+        '?key=$_locationIQApiKey'
+        '&center=$latitude,$longitude'
+        '&zoom=16'
+        '&size=${width}x$height'
+        '&markers=icon:small-red-cutout|$latitude,$longitude';
   }
 
-  /// Lấy địa chỉ từ toạ độ thông qua Google Geocoding API
+  /// Lấy địa chỉ từ toạ độ (reverse geocoding)
   static Future<String> getPlaceAddress(double lat, double lng) async {
     final url = Uri.parse(
-      'https://maps.googleapis.com/maps/api/geocode/json'
-      '?latlng=$lat,$lng&key=$GOOGLE_API_KEY',
-    );
+        'https://us1.locationiq.com/v1/reverse.php?key=$_locationIQApiKey&lat=$lat&lon=$lng&format=json');
 
     final response = await http.get(url);
+    if (response.statusCode != 200) {
+      throw Exception('Reverse geocoding failed: ${response.statusCode}');
+    }
+
     final data = json.decode(response.body);
-    if (data['status'] == 'OK' && data['results'].isNotEmpty) {
-      return data['results'][0]['formatted_address'];
+    if (data['display_name'] != null) {
+      return data['display_name'];
     } else {
       throw Exception('Không tìm thấy địa chỉ.');
     }
@@ -45,7 +48,6 @@ class LocationHelper {
   /// Lấy vị trí hiện tại (cross-platform)
   static Future<LatLng> getCurrentLocation() async {
     if (kIsWeb) {
-      // Dành cho Flutter Web → dùng geolocator
       final serviceEnabled = await Geolocator.isLocationServiceEnabled();
       if (!serviceEnabled) {
         throw Exception("Dịch vụ định vị đang tắt. Hãy bật vị trí.");
@@ -68,7 +70,6 @@ class LocationHelper {
 
       return LatLng(position.latitude, position.longitude);
     } else {
-      // Dành cho Android/iOS → dùng plugin `location`
       final loc.Location location = loc.Location();
 
       bool serviceEnabled = await location.serviceEnabled();
@@ -98,7 +99,7 @@ class LocationHelper {
     }
   }
 
-  /// Lưu/trả lại vị trí từ cache (SharedPreferences)
+  /// Lưu/trả lại vị trí từ cache
   static Future<LatLng> getCurrentLocationCache({bool refresh = false}) async {
     final prefs = await SharedPreferences.getInstance();
 

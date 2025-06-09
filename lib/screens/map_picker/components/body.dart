@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:flutter_application_1/components/custom_map.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:flutter_application_1/components/default_button.dart';
 import 'package:flutter_application_1/config/constants.dart';
 import 'package:flutter_application_1/config/size_config.dart';
@@ -21,18 +21,33 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  String _addressSelected = "Chạm vào bạn đồ để chọn vị trí";
+  String _addressSelected = "Chạm vào bản đồ để chọn vị trí";
   LatLng? _latLngSelected;
   bool isPlaceAddressLoading = false;
 
-  Future<void> _onTap(LatLng newLatLng) async {
-    _latLngSelected = newLatLng;
+  late final MapController _mapController;
 
+  @override
+  void initState() {
+    super.initState();
+    _mapController = MapController();
+  }
+
+  Future<void> _onTap(LatLng newLatLng) async {
     setState(() {
+      _latLngSelected = newLatLng;
       isPlaceAddressLoading = true;
     });
-    _addressSelected = await LocationHelper.getPlaceAddress(
-        _latLngSelected!.latitude, _latLngSelected!.longitude);
+
+    try {
+      _addressSelected = await LocationHelper.getPlaceAddress(
+        newLatLng.latitude,
+        newLatLng.longitude,
+      );
+    } catch (_) {
+      _addressSelected = "Không lấy được địa chỉ.";
+    }
+
     setState(() {
       isPlaceAddressLoading = false;
     });
@@ -40,22 +55,41 @@ class _BodyState extends State<Body> {
 
   @override
   Widget build(BuildContext context) {
+    final LatLng defaultPosition = widget.initialCameraPosition ??
+        LatLng(20.9920107, 105.8599154); // fallback vị trí
+
     return SafeArea(
       child: Stack(
         alignment: Alignment.center,
         children: [
-          CustomMap(
-            initialCameraPosition: widget.initialCameraPosition,
-            onTap: (latLng) => _onTap(latLng),
+          FlutterMap(
+            mapController: _mapController,
+            options: MapOptions(
+              center: defaultPosition,
+              zoom: 15.0,
+              onTap: (tapPosition, latLng) => _onTap(latLng),
+            ),
+            children: [
+              TileLayer(
+                urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                userAgentPackageName: 'com.example.app',
+              ),
+              if (_latLngSelected != null)
+                MarkerLayer(
+                  markers: [
+                    Marker(
+                      point: _latLngSelected!,
+                      width: 40,
+                      height: 40,
+                      child: const Icon(Icons.location_pin,
+                          color: Colors.red, size: 40),
+                    ),
+                  ],
+                ),
+            ],
           ),
-          Positioned(
-            top: 0,
-            child: _panelTop(opacity: 0.9),
-          ),
-          Positioned(
-            bottom: 10,
-            child: _panelBottom(opacity: 0.9),
-          ),
+          Positioned(top: 0, child: _panelTop(opacity: 0.9)),
+          Positioned(bottom: 10, child: _panelBottom(opacity: 0.9)),
         ],
       ),
     );
@@ -73,27 +107,17 @@ class _BodyState extends State<Body> {
             color: Colors.grey.withOpacity(0.15),
             spreadRadius: 5,
             blurRadius: 7,
-            offset: Offset(0, 3),
+            offset: const Offset(0, 3),
           ),
         ],
       ),
-      child: Column(
-        children: [
-          SizedBox(height: 18),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const <Widget>[
-              Text(
-                "Di chuyển và chạm đúng vị trí trên bản đồ",
-                style: TextStyle(
-                  fontWeight: FontWeight.normal,
-                  fontSize: 16,
-                ),
-              ),
-            ],
-          ),
-          SizedBox(height: 18),
-        ],
+      child: const Padding(
+        padding: EdgeInsets.symmetric(vertical: 18),
+        child: Text(
+          "Chạm vào bản đồ để chọn vị trí",
+          style: TextStyle(fontWeight: FontWeight.normal, fontSize: 16),
+          textAlign: TextAlign.center,
+        ),
       ),
     );
   }
@@ -109,19 +133,18 @@ class _BodyState extends State<Body> {
             color: Colors.grey.withOpacity(0.15),
             spreadRadius: 5,
             blurRadius: 7,
-            offset: Offset(0, 3),
+            offset: const Offset(0, 3),
           ),
         ],
       ),
       child: Column(
         children: [
-          SizedBox(height: 18),
+          const SizedBox(height: 18),
           isPlaceAddressLoading
-              ? CircularProgressIndicator()
+              ? const CircularProgressIndicator()
               : Padding(
-                  padding: EdgeInsets.only(
-                    left: getProportionateScreenWidth(20),
-                    right: getProportionateScreenWidth(20),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: getProportionateScreenWidth(20),
                   ),
                   child: Text(
                     _addressSelected,
@@ -134,22 +157,25 @@ class _BodyState extends State<Body> {
                     ),
                   ),
                 ),
-          SizedBox(height: 18),
+          const SizedBox(height: 18),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
+            children: [
               SizedBox(
                 width: SizeConfig.screenWidth * 0.75,
                 child: DefaultButton(
                   text: "Xác nhận",
                   press: () {
-                    widget.onPlacePicked(_latLngSelected!, _addressSelected);
+                    if (_latLngSelected != null) {
+                      widget.onPlacePicked(
+                          _latLngSelected!, _addressSelected);
+                    }
                   },
                 ),
               )
             ],
           ),
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
         ],
       ),
     );

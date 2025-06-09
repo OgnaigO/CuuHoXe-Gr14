@@ -76,10 +76,7 @@ final Map<String, WidgetBuilder> routes = {
   RepairPlaceManageImageScreen.routeName: (context) => const RepairPlaceManageImageScreen(),
   WaitWebSocketScreen.routeName: (context) => const WaitWebSocketScreen(),
   UserInfoScreen.routeName: (context) => const UserInfoScreen(),
-  IssueDetailsScreen.routeName: (context) {
-    final args = ModalRoute.of(context)!.settings.arguments as IssueDetailsArguments;
-    return IssueDetailsScreen(arguments: args);
-  },
+  IssueDetailsScreen.routeName: (context) => const IssueDetailsScreen(),
   UserRequestBecomePartnerScreen.routeName: (context) => const UserRequestBecomePartnerScreen(),
   UserDetailsScreen.routeName: (context) => const UserDetailsScreen(),
   NotificationScreen.routeName: (context) => const NotificationScreen(),

@@ -17,7 +17,6 @@ class _BodyState extends State<Body> {
   Future<List<User>> _fetchAllData(BuildContext context) async {
     _users = await AuthRepository.findAllUserRequestBecomePartner();
 
-    //Dùng các cách này sẽ lỗi. xem thêm: https://stackoverflow.com/questions/61175917/setstate-callback-argument-returned-a-future-in-flutter
     /*setState(() {
       _users = await AuthRepository.findAllUserRequestBecomePartner();
     });*/

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:latlong2/latlong.dart';  // Import LatLng from latlong2
 import 'package:provider/provider.dart';
+import 'package:flutter_map/flutter_map.dart';  // Import flutter_map for OpenStreetMap
 import 'package:flutter_application_1/providers/garage_provider.dart';
-
-import '../../../../../components/custom_map.dart';
 
 class Body extends StatelessWidget {
   const Body({Key? key}) : super(key: key);
@@ -12,30 +11,37 @@ class Body extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Consumer<GarageProvider>(
-        builder: (context, garageProvider, child) => CustomMap(
-          markers: {
-            /*Marker(
-                  markerId: MarkerId('Marker_0' + garageProvider.items[0].id!.toString()),
-                  position: LatLng(garageProvider.items[0].latitude!, garageProvider.items[0].longitude!)),*/
-
-            if (garageProvider.items.isNotEmpty)
-              ...garageProvider.items.map<Marker>(
-                (e) => Marker(
-                  markerId: MarkerId('Marker_' + e.id!.toString()),
-                  position: LatLng(e.latitude!, e.longitude!),
-                  infoWindow: InfoWindow(title: e.name),
-                ),
+        builder: (context, garageProvider, child) {
+          return FlutterMap(
+            options: MapOptions(
+              center: garageProvider.items.isNotEmpty
+                  ? LatLng(
+                      garageProvider.items[0].latitude!,
+                      garageProvider.items[0].longitude!,
+                    )
+                  : LatLng(0, 0), // Default position if no garages
+              zoom: 13.0,
+            ),
+            children: [
+              TileLayer(
+                urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', // OpenStreetMap tile URL
+                userAgentPackageName: 'com.example.app',
               ),
-          },
-
-          initialCameraPosition: garageProvider.items.isNotEmpty
-              ? LatLng(
-                  garageProvider.items[0].latitude!,
-                  garageProvider.items[0].longitude!,
-                )
-              : null,
-          //onTap: (_) => {},
-        ),
+              MarkerLayer(
+                markers: garageProvider.items.isNotEmpty
+                    ? garageProvider.items.map<Marker>((e) {
+                        return Marker(
+                          point: LatLng(e.latitude!, e.longitude!),  // LatLng from latlong2
+                          width: 80.0,
+                          height: 80.0,
+                          child: Icon(Icons.location_on, color: Colors.red, size: 40), // Added child as an Icon
+                        );
+                      }).toList()
+                    : [],
+              ),
+            ],
+          );
+        },
       ),
     );
   }
